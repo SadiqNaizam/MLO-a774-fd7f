@@ -1,14 +1,30 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import React from 'react';
+import MainAppLayout from '@/components/layout/MainAppLayout';
+import PostsFeed from '@/components/Feed/PostsFeed';
+import StoriesPanel from '@/components/Feed/StoriesPanel';
+import SuggestedGroupsPanel from '@/components/Feed/SuggestedGroupsPanel';
 
-const Index = () => {
+/**
+ * CoreFeedPage is the main page component for displaying the Facebook-like feed.
+ * It utilizes the MainAppLayout to structure the page into header, sidebars, and main content area.
+ * The main content consists of the PostsFeed, and the right sidebar contains StoriesPanel and SuggestedGroupsPanel.
+ */
+const CoreFeedPage: React.FC = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <MainAppLayout
+      rightSidebarContent={
+        // The right sidebar houses widgets like Stories and Suggested Groups.
+        // MainAppLayout will apply spacing between these components.
+        <React.Fragment>
+          <StoriesPanel />
+          <SuggestedGroupsPanel />
+        </React.Fragment>
+      }
+    >
+      {/* The main content area is dedicated to the PostsFeed */}
+      <PostsFeed />
+    </MainAppLayout>
   );
 };
 
-export default Index;
+export default CoreFeedPage;
